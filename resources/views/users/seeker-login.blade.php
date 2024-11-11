@@ -8,7 +8,7 @@
             <div class="col-md-7">
                 <div class="card shadow-lg">
                     <div class="card-header">Login</div>
-                    <form action="" method="POST">
+                    <form action="{{route('login.post')}}" method="POST">
                         @csrf
                     <div class="card-body">
                         <div class="form-group">

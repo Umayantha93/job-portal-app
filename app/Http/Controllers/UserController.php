@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\JobRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -30,5 +31,19 @@ class UserController extends Controller
     public function loginSeeker()
     {
         return view('users.seeker-login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $credentails = $request->only('email', 'password');
+
+        if(Auth::attempt($credentails)) {
+            return redirect()->intended('dashboard');
+        }
     }
 }
