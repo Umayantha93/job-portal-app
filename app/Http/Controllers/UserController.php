@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class UserController extends Controller
         return view('users.seeker-register');
     }
 
-    public function storeSeeker()
+    public function storeSeeker(JobRegisterRequest $request)
     {
         User::create([
         'name' => request('name'),
