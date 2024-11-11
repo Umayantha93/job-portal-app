@@ -14,6 +14,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Register</div>
+                    <form action="{{route('store.seeker')}}" method="POST">
+                        @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="">Full name</label>
@@ -32,6 +34,7 @@
                             <button class="btn btn-primary" type="submit">Register</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
