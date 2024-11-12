@@ -26,12 +26,12 @@ class UserController extends Controller
         'user_type' => self::JOB_SEEKER,
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('successMessage', 'Your account was created');
     }
 
     public function loginSeeker()
     {
-        return view('users.seeker-login');
+        return view('users.login');
     }
 
     public function postLogin(Request $request)
@@ -70,6 +70,6 @@ class UserController extends Controller
             'user_type' => self::JOB_POSTER
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('successMesssage', 'Your account was created');
     }
 }
