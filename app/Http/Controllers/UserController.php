@@ -67,9 +67,10 @@ class UserController extends Controller
             'name' => request('name'),
             'email' => request('email'),
             'password' => Hash::make(request('password')),
-            'user_type' => self::JOB_POSTER
+            'user_type' => self::JOB_POSTER,
+            'user_trial' => now()->addWeek()
         ]);
 
-        return redirect()->route('login')->with('successMesssage', 'Your account was created');
+        return redirect()->route('login')->with('successMessage', 'Your account was created');
     }
 }
