@@ -23,6 +23,7 @@ Route::get('/seeker-register', [UserController::class, 'createSeeker'])->name('c
 Route::post('/store-seeker', [UserController::class, 'storeSeeker'])->name('store.seeker');
 
 Route::get('/employer-register', [UserController::class, 'createEmployer'])->name('create.employer');
+Route::post('/store-employer', [UserController::class, 'storeEmployer'])->name('store.employer');
 
 Route::get('/seeker-login', [UserController::class, 'loginSeeker'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');

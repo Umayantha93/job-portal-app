@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Employer Registration</div>
-                    <form action="#" method="POST">
+                    <form action="{{route('store.employer')}}" method="POST">
                         @csrf
                     <div class="card-body">
                         <div class="form-group">

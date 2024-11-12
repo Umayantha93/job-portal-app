@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\JobRegisterRequest;
+use App\Http\Requests\RegistrationFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     const JOB_SEEKER = 'seeker';
+    const JOB_POSTER = 'poster';
     public function createSeeker()
     {
         return view('users.seeker-register');
     }
 
-    public function storeSeeker(JobRegisterRequest $request)
+    public function storeSeeker(RegistrationFormRequest $request)
     {
         User::create([
         'name' => request('name'),
@@ -25,7 +26,7 @@ class UserController extends Controller
         'user_type' => self::JOB_SEEKER,
         ]);
 
-        return back();
+        return redirect()->route('login');
     }
 
     public function loginSeeker()
@@ -58,5 +59,17 @@ class UserController extends Controller
     public function createEmployer()
     {
         return view('users.employer-register');
+    }
+
+    public function storeEmployer(RegistrationFormRequest $request)
+    {
+        User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+            'user_type' => self::JOB_POSTER
+        ]);
+
+        return redirect()->route('login');
     }
 }
