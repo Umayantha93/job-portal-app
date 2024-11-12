@@ -54,4 +54,9 @@ class UserController extends Controller
         auth()->logout();
         return redirect()->route('login');
     }
+
+    public function createEmployer()
+    {
+        return view('users.employer-register');
+    }
 }
