@@ -19,12 +19,14 @@ class UserController extends Controller
 
     public function storeSeeker(RegistrationFormRequest $request)
     {
-        User::create([
+        $user = User::create([
         'name' => request('name'),
         'email' => request('email'),
         'password' => Hash::make(request('password')),
         'user_type' => self::JOB_SEEKER,
         ]);
+
+        $user->sendEmailVerificationNotification();
 
         return redirect()->route('login')->with('successMessage', 'Your account was created');
     }
