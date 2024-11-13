@@ -6,19 +6,19 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <h1>Looking for a job?</h1>
+                <h1>Looking to hire talented employees?</h1>
                 <h3>Please create an account</h3>
-                <img src="{{asset('image/sign-up.png')}}" width="350">
+                <img src="{{asset('image/join-us.png')}}" width="185">
             </div>
 
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Register</div>
-                    <form action="{{route('store.seeker')}}" method="POST">
+                    <div class="card-header">Employer Registration</div>
+                    <form action="{{route('store.employer')}}" method="POST">
                         @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Full name</label>
+                            <label for="">Company name</label>
                             <input type="text" name="name" class="form-control">
                             @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>

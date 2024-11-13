@@ -4,26 +4,14 @@
 @section('content')
 
     <div class="container mt-5">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-6">
-                <h1>Looking for a job?</h1>
-                <h3>Please create an account</h3>
-                <img src="{{asset('image/sign-up.png')}}" width="350">
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">Register</div>
-                    <form action="{{route('store.seeker')}}" method="POST">
+                @include('message')
+                <div class="card shadow-lg">
+                    <div class="card-header">Login</div>
+                    <form action="{{route('login.post')}}" method="POST">
                         @csrf
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="">Full name</label>
-                            <input type="text" name="name" class="form-control">
-                            @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
                         <div class="form-group">
                             <label for="">Email</label>
                             <input type="text" name="email" class="form-control">
@@ -39,8 +27,8 @@
                             @endif
                         </div>
                         <br>
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Register</button>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit">Login</button>
                         </div>
                     </div>
                     </form>
