@@ -34,7 +34,7 @@ Route::post('/store-seeker', [UserController::class, 'storeSeeker'])->name('stor
 Route::get('/employer-register', [UserController::class, 'createEmployer'])->name('create.employer');
 Route::post('/store-employer', [UserController::class, 'storeEmployer'])->name('store.employer');
 
-Route::get('/seeker-login', [UserController::class, 'loginSeeker'])->name('login');
+Route::get('/login', [UserController::class, 'loginSeeker'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
