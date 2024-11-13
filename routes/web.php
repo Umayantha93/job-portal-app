@@ -28,6 +28,8 @@ Route::post('/store-employer', [UserController::class, 'storeEmployer'])->name('
 Route::get('/seeker-login', [UserController::class, 'loginSeeker'])->name('login');
 Route::post('/login', [UserController::class, 'postLogin'])->name('login.post');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('verified')->name('dashboard');
+Route::get('/verify', [DashboardController::class, 'verify'])->name('verification.notice');
+
