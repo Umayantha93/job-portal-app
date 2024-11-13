@@ -12,6 +12,7 @@ class UserController extends Controller
 {
     const JOB_SEEKER = 'seeker';
     const JOB_POSTER = 'poster';
+
     public function createSeeker()
     {
         return view('users.seeker-register');
