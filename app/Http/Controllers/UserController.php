@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     const JOB_SEEKER = 'seeker';
-    const JOB_POSTER = 'poster';
+    const JOB_POSTER = 'employer';
 
     public function createSeeker()
     {
