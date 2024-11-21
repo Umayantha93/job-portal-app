@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\doNotAllowUserToMakePayment;
 use App\Http\Middleware\isEmployer;
 use App\Models\User;
 use Exception;
@@ -20,7 +21,7 @@ class SubscriptionController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth', isEmployer::class]);
+        $this->middleware(['auth', isEmployer::class, doNotAllowUserToMakePayment::class]);
     }
 
     public function subscribe()
