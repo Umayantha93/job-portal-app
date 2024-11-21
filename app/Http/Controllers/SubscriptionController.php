@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\isEmployer;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -75,6 +76,8 @@ class SubscriptionController extends Controller
                     'plan' => $selectPlan['name'],
                     'billing_ends' => $billingEnds
                 ]);
+
+                // dd($successURl);
                 $session = Session::create([
                     'payment_method_types' => ['card'],
                     'line_items' => [
@@ -97,17 +100,26 @@ class SubscriptionController extends Controller
                 return redirect($session->url);
             }
         }catch(Exception $e){
-            return $e;
+            return response()->json($e);
         }
     }
 
-    public function paymentSuccess()
+    public function paymentSuccess(Request $request)
     {
-        // update db
+        $plan = $request->plan;
+        $billingEnds = $request->billing_ends;
+
+        User::where('id', auth()->user()->id)->update([
+            'plan' => $plan,
+            'billing_ends' => $billingEnds,
+            'status' => 'paid'
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Payment was successfully processed');
     }
 
     public function cancel()
     {
-        // redirect
+        return redirect()->route('dashboard')->with('error', 'Payment was unsuccessful');
     }
 }
