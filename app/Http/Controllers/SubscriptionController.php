@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\doNotAllowUserToMakePayment;
 use App\Http\Middleware\isEmployer;
+use App\Mail\PurchaseMail;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -65,10 +67,10 @@ class SubscriptionController extends Controller
                 $selectPlan = $plans['weekly'];
                 $billingEnds = now()->addWeek()->startOfDay()->toDateString();
             }elseif($request->is('pay/monthly')){
-                $selectPlan = $plans['weekly'];
+                $selectPlan = $plans['monthly'];
                 $billingEnds = now()->addMonth()->startOfDay()->toDateString();
-            }elseif($request->is('pay/monthly')){
-                $selectPlan = $plans['weekly'];
+            }elseif($request->is('pay/yearly')){
+                $selectPlan = $plans['yearly'];
                 $billingEnds = now()->addYear()->startOfDay()->toDateString();
             }
             if($selectPlan)
@@ -78,7 +80,6 @@ class SubscriptionController extends Controller
                     'billing_ends' => $billingEnds
                 ]);
 
-                // dd($successURl);
                 $session = Session::create([
                     'payment_method_types' => ['card'],
                     'line_items' => [
@@ -115,6 +116,12 @@ class SubscriptionController extends Controller
             'billing_ends' => $billingEnds,
             'status' => 'paid'
         ]);
+
+        try{
+            Mail::to(auth()->user())->queue(new PurchaseMail($plan, $billingEnds));
+        }catch (Exception $e){
+            return response()->json($e);
+        }
 
         return redirect()->route('dashboard')->with('success', 'Payment was successfully processed');
     }
