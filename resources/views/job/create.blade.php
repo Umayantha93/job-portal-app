@@ -28,8 +28,8 @@
                     <div class="form-group">
                         <label for="description">Roles and Responsibilty</label>
                         <textarea id="description" name="roles" class="summernote from-control"></textarea>
-                        @if ($errors->has('description'))
-                            <div class="error">{{$errors->first('description')}}</div>
+                        @if ($errors->has('roles'))
+                            <div class="error">{{$errors->first('roles')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
@@ -50,14 +50,23 @@
                             <input type="radio" class="form-check-input" name="contract" id="contract"  value="contract">
                             <label for="contract" class="form-check-label">Contract</label>
                         </div>
+                        @if ($errors->has('job_type'))
+                            <div class="error">{{$errors->first('job_type')}}</div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
                         <input type="text" name="address" id="address" class="form-control">
+                        @if ($errors->has('address'))
+                            <div class="error">{{$errors->first('address')}}</div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="date">Application closing date</label>
                         <input type="text" name="date" id="datepicker" class="form-control">
+                        @if ($errors->has('date'))
+                            <div class="error">{{$errors->first('date')}}</div>
+                        @endif
                     </div>
                     <div class="form-group mt-3">
                         <button type="submit" class="btn btn-success">Post a Job</button>
