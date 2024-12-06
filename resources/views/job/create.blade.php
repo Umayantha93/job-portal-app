@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 mt-5">
                 <h1>Post a job</h1>
-                <form action="" method="POST">@csrf
+                <form action="{{route('job.store')}}" method="POST">@csrf
                     <div class="form-group">
                         <label for="file">Feature Image</label>
                         <input type="file" name="feature_image" id="feature_image" class="form-control" placeholder="">
@@ -14,14 +14,23 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" name="title" id="title" class="form-control" placeholder="">
+                        @if ($errors->has('title'))
+                            <div class="error"> {{$errors->first('title')}}</div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" class="form-control" placeholder=""></textarea>
+                        <textarea id="description" name="description" class="summernote form-control"></textarea>
+                        @if ($errors->has('description'))
+                            <div class="error">{{$errors->first('description')}}</div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="description">Roles and Responsibilty</label>
-                        <textarea id="description" name="roles" class="form-control"></textarea>
+                        <textarea id="description" name="roles" class="summernote from-control"></textarea>
+                        @if ($errors->has('description'))
+                            <div class="error">{{$errors->first('description')}}</div>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Job Types</label>
@@ -57,5 +66,13 @@
             </div>
         </div>
     </div>
-
+    <style>
+        .note-insert {
+            display: none!important;
+        }
+        .error {
+            color: red;
+            font-weight :bold;
+        }
+    </style>
 @endsection

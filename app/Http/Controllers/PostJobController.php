@@ -10,4 +10,13 @@ class PostJobController extends Controller
     {
         return view('job.create');
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'feature_image' => 'required|mimes:png,jpg,jpeg',
+            'description' => 'required|min:10'
+        ]);
+    }
 }
