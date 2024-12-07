@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 mt-5">
                 <h1>Post a job</h1>
-                <form action="{{route('job.store')}}" method="POST">@csrf
+                <form action="{{route('job.store')}}" method="POST" enctype="multipart/form-data">@csrf
                     <div class="form-group">
                         <label for="file">Feature Image</label>
                         <input type="file" name="feature_image" id="feature_image" class="form-control" placeholder="">
@@ -52,6 +52,13 @@
                         </div>
                         @if ($errors->has('job_type'))
                             <div class="error">{{$errors->first('job_type')}}</div>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" name="salary" id="salary" class="form-control">
+                        @if ($errors->has('salary'))
+                            <div class="error">{{$errors->first('salary')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
