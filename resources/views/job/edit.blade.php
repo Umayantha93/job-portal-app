@@ -13,21 +13,21 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="">
+                        <input type="text" name="title" id="title" value="{{$listing->title}}" class="form-control" placeholder="">
                         @if ($errors->has('title'))
                             <div class="error"> {{$errors->first('title')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" class="summernote form-control"></textarea>
+                        <textarea id="description" name="description" class="summernote form-control">{{$listing->description}}</textarea>
                         @if ($errors->has('description'))
                             <div class="error">{{$errors->first('description')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="description">Roles and Responsibilty</label>
-                        <textarea id="description" name="roles" class="summernote from-control"></textarea>
+                        <textarea id="description" name="roles" class="summernote from-control">{{$listing->roles}}</textarea>
                         @if ($errors->has('roles'))
                             <div class="error">{{$errors->first('roles')}}</div>
                         @endif
@@ -35,19 +35,23 @@
                     <div class="form-group">
                         <label>Job Types</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="full_time" id="full_time"  value="Full time">
+                            <input type="radio" class="form-check-input" name="full_time" id="full_time"  value="Full time"
+                            {{$listing->job_type === 'Full time' ? 'checked' : ''}}>
                             <label for="full_time" class="form-check-label">Full Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="part_time" id="part_time"  value="Part time">
+                            <input type="radio" class="form-check-input" name="part_time" id="part_time"  value="Part time"
+                            {{$listing->job_type === 'Part time' ? 'checked' : ''}}>
                             <label for="part_time" class="form-check-label">Part Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="casual" id="casual"  value="casual">
+                            <input type="radio" class="form-check-input" name="casual" id="casual"  value="casual"
+                            {{$listing->job_type === 'casual' ? 'checked' : ''}}>
                             <label for="casual" class="form-check-label">Casual</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="contract" id="contract"  value="Cntract">
+                            <input type="radio" class="form-check-input" name="contract" id="contract"  value="Contract"
+                            {{$listing->job_type === 'Contract' ? 'checked' : ''}}>
                             <label for="contract" class="form-check-label">Contract</label>
                         </div>
                         @if ($errors->has('job_type'))
@@ -56,21 +60,21 @@
                     </div>
                     <div class="form-group">
                         <label for="salary">Salary</label>
-                        <input type="text" name="salary" id="salary" class="form-control">
+                        <input type="text" name="salary" id="salary" class="form-control" value="{{$listing->salary}}">
                         @if ($errors->has('salary'))
                             <div class="error">{{$errors->first('salary')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" class="form-control">
+                        <input type="text" name="address" id="address" class="form-control" value="{{$listing->address}}">
                         @if ($errors->has('address'))
                             <div class="error">{{$errors->first('address')}}</div>
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="date">Application closing date</label>
-                        <input type="text" name="date" id="datepicker" class="form-control">
+                        <input type="text" name="date" id="datepicker" class="form-control" value="{{$listing->application_close_date}}">
                         @if ($errors->has('date'))
                             <div class="error">{{$errors->first('date')}}</div>
                         @endif

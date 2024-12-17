@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\JobPostFromRequest;
+use App\Models\Listing;
 use App\Post\JobPost;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,11 @@ class PostJobController extends Controller
     public function store(JobPostFromRequest $request)
     {
         $this->job->store($request);
-
-
         return back();
+    }
+
+    public function edit(Listing $listing)
+    {
+        return view('job.edit', compact('listing'));
     }
 }
