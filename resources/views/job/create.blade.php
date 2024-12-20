@@ -35,19 +35,19 @@
                     <div class="form-group">
                         <label>Job Types</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="full_time" id="full_time"  value="Full time">
+                            <input type="radio" class="form-check-input" name="job_type" id="full_time"  value="Fulltime">
                             <label for="full_time" class="form-check-label">Full Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="part_time" id="part_time"  value="Part time">
+                            <input type="radio" class="form-check-input" name="job_type" id="part_time"  value="Parttime">
                             <label for="part_time" class="form-check-label">Part Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="casual" id="casual"  value="casual">
+                            <input type="radio" class="form-check-input" name="job_type" id="casual"  value="Casual">
                             <label for="casual" class="form-check-label">Casual</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="contract" id="contract"  value="Cntract">
+                            <input type="radio" class="form-check-input" name="job_type" id="contract"  value="Contract">
                             <label for="contract" class="form-check-label">Contract</label>
                         </div>
                         @if ($errors->has('job_type'))

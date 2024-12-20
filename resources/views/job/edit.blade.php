@@ -5,8 +5,12 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 mt-5">
-                <h1>Post a job</h1>
-                <form action="{{route('job.store')}}" method="POST" enctype="multipart/form-data">@csrf
+                <h1>Update a job</h1>
+                @if (Session::has('success'))
+                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                @endif
+                <form action="{{route('job.update', [$listing->id])}}" method="POST" enctype="multipart/form-data">@csrf
+                    @method('PUT ')
                     <div class="form-group">
                         <label for="file">Feature Image</label>
                         <input type="file" name="feature_image" id="feature_image" class="form-control" placeholder="">
@@ -35,22 +39,22 @@
                     <div class="form-group">
                         <label>Job Types</label>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="full_time" id="full_time"  value="Full time"
-                            {{$listing->job_type === 'Full time' ? 'checked' : ''}}>
+                            <input type="radio" class="form-check-input" name="job_type" id="full_time"  value="Fulltime"
+                            {{$listing->job_type === 'Fulltime' ? 'checked' : ''}}>
                             <label for="full_time" class="form-check-label">Full Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="part_time" id="part_time"  value="Part time"
-                            {{$listing->job_type === 'Part time' ? 'checked' : ''}}>
+                            <input type="radio" class="form-check-input" name="job_type" id="part_time"  value="Parttime"
+                            {{$listing->job_type === 'Parttime' ? 'checked' : ''}}>
                             <label for="part_time" class="form-check-label">Part Time</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="casual" id="casual"  value="casual"
-                            {{$listing->job_type === 'casual' ? 'checked' : ''}}>
+                            <input type="radio" class="form-check-input" name="job_type" id="casual"  value="Casual"
+                            {{$listing->job_type === 'Casual' ? 'checked' : ''}}>
                             <label for="casual" class="form-check-label">Casual</label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" name="contract" id="contract"  value="Contract"
+                            <input type="radio" class="form-check-input" name="job_type" id="contract"  value="Contract"
                             {{$listing->job_type === 'Contract' ? 'checked' : ''}}>
                             <label for="contract" class="form-check-label">Contract</label>
                         </div>
@@ -80,7 +84,7 @@
                         @endif
                     </div>
                     <div class="form-group mt-3">
-                        <button type="submit" class="btn btn-success">Post a Job</button>
+                        <button type="submit" class="btn btn-success">Update a Job</button>
                     </div>
                 </form>
             </div>
