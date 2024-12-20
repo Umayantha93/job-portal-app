@@ -24,7 +24,8 @@ class PostJobController extends Controller
 
     public function store(JobPostFromRequest $request)
     {
-        $this->job->store($request);
+        // $this->job->store($request);
+        (new JobPost)->store($request);
         return back();
     }
 
@@ -35,11 +36,10 @@ class PostJobController extends Controller
 
     public function update(JobEditFormRequest $request, $id)
     {
-        if($request->hasFile('feature_image')){
-            $featureImage = $request->file('feature_image')->store('image', 'public');
-            Listing::find($id)->update(['feature_image' => $featureImage]);
-        }
-        Listing::find($id)->update($request->except('feature_image'));
+
+        // $this->job->updatePost($id, $request);
+
+        (new JobPost())->updatePost($id, $request);
 
         return back()->with('success', 'Your job post has been successfully uploaded');
 
