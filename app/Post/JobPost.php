@@ -9,11 +9,16 @@ use Illuminate\Support\Str;
 
 class JobPost
 {
+
+    public function getImagePath($data)
+    {
+        return $data->file('feature_image')->store('images', 'public');
+    }
     public function store($data)
     {
-        $imagePath = $data->file('feature_image')->store('images', 'public');
+
         Listing::create([
-            'feature_image' => $imagePath,
+            'feature_image' => $this->getImagePath($data),
             'user_id' => auth()->user()->id,
             'title' => $data['title'],
             'description' => $data['description'],
@@ -29,8 +34,7 @@ class JobPost
     public function updatePost($id, $data)
     {
         if($data->hasFile('feature_image')){
-            $featureImage = $data->file('feature_image')->store('image', 'public');
-            Listing::find($id)->update(['feature_image' => $featureImage]);
+            Listing::find($id)->update(['feature_image' => $this->getImagePath($data)]);
         }
 
         Listing::find($id)->update($data->except('feature_image'));
