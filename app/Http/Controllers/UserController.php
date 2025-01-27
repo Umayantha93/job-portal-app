@@ -31,8 +31,7 @@ class UserController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return response()->json('success');
-        // return redirect()->route('verification.notice')->with('successMessage', 'Your account was created');
+        return redirect()->route('verification.notice')->with('successMessage', 'Your account was created');
     }
 
     public function loginSeeker()
@@ -81,7 +80,7 @@ class UserController extends Controller
 
         $user->sendEmailVerificationNotification();
 
-        return response()->json('success');
-        // return redirect()->route('verification.notice')->with('successMessage', 'Your account was created');
+        // return response()->json('success');
+        return redirect()->route('verification.notice')->with('successMessage', 'Your account was created');
     }
 }
